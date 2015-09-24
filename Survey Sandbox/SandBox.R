@@ -28,7 +28,7 @@ surveyResults=matrix(sample.int(max(answerVals), size = questions*respondents, r
 #answers to all questions.  The value at the node is the number of people who responded with that specific
 #combination of answers.
 
-#Next, remove a question (walk one level up the tree) such that the node value is produced in the new layer.
+#Next, remove a question (walk one level up the tree) such that the maximal node value is produced in the new layer.
 
 #Repeat until a node value in the new layer is >=N.
 
