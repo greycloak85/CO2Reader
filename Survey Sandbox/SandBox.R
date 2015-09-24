@@ -15,18 +15,28 @@ respondents=200;
 surveyResults=matrix(sample.int(max(answerVals), size = questions*respondents, replace = TRUE), nrow = questions, ncol = respondents)
 
 
-#*********Below are questions to answer***************************
+#####################Below are questions to answer###################################
 
 
-#Are the responses random?  (i.e. not spoofed, honestly generated, is there structure)
-
-
-
-#What is the maximal group of questions such the N consistent responses are produced?
+#*******Are the responses random?  (i.e. not spoofed, honestly generated, is there structure)*********
 
 
 
-#What are the 2 groups of questions such the N_1+N_2>=N consistent responses are produced?
+#*******What is the maximal group of questions such the N consistent responses are produced?**********
+
+#Begin with a tree where the nodes contain all questions and each node denotes as specific combination of 
+#answers to all questions.  The value at the node is the number of people who responded with that specific
+#combination of answers.
+
+#Next, remove a question (walk one level up the tree) such that the node value is produced in the new layer.
+
+#Repeat until a node value in the new layer is >=N.
+
+
+
+
+
+#*******What are the 2 groups of questions such the N_1+N_2>=N consistent responses are produced?*****
 
 
 
