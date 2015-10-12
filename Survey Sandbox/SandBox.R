@@ -24,13 +24,26 @@ surveyResults=matrix(sample.int(max(answerVals), size = questions*respondents, r
 
 #*******What is the maximal group of questions such the N consistent responses are produced?**********
 
-#Begin with a tree where the nodes contain all questions and each node denotes as specific combination of 
-#answers to all questions.  The value at the node is the number of people who responded with that specific
-#combination of answers.
+#simpler!
+#make a temporary matrix matTemp
 
-#Next, remove a question (walk one level up the tree) such that the maximal node value is produced in the new layer.
+#for remCol=0:n
+  #if remCol==0
+    #continue
+  #else
+  #remove column number remCol corresponding to question number remCol
+  #end
 
-#Repeat until a node value in the new layer is >=N.
+  #for thisRow=1:m
+    #find the number of rows = to row thisRow, save in a vector of length m called commonAns
+    #remove rows that are = to this row
+  #end
+  #check if any val in commonAns>N (desired threshold)
+  #if so, break
+#end
+
+
+
 
 
 
