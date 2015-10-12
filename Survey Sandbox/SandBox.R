@@ -23,11 +23,12 @@ surveyResults=matrix(sample.int(max(answerVals), size = questions*respondents, r
 
 
 #*******What is the maximal group of questions such the N consistent responses are produced?**********
+# order questions by variability
 
 #simpler!
 #make a temporary matrix matTemp
 
-#for remCol=0:n
+#for remCol=0:n # take out none, take out 1, take out 1&2, take out 1, 2, &3, etc....  Question order must be arranged in pre-processing
   #if remCol==0
     #continue
   #else
@@ -36,7 +37,7 @@ surveyResults=matrix(sample.int(max(answerVals), size = questions*respondents, r
 
   #for thisRow=1:m
     #find the number of rows = to row thisRow, save in a vector of length m called commonAns
-    #remove rows that are = to this row
+    #remove rows that are = to this row, or skip elements of row that match this one.
   #end
   #check if any val in commonAns>N (desired threshold)
   #if so, break
