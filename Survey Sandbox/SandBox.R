@@ -1,15 +1,19 @@
-#This intent of this script is to serve as a sandbox for approaches we might take in the analysis of survey data
-# September 23, 2015
-#Jim's comment
-rm(list = ls(all = TRUE))  #equivalent to clear all in Matlab
+# The intent of this script is to serve as a sandbox for approaches we might take 
+# in the analysis of survey data to identify groups of individuals which share many 
+# common features. 
+#
+# Last Updated on October 21, 2015
 
 
-#define the characteristices associated with the survey
+rm(list = ls(all = TRUE))  # Equivalent to "Clear All" in Matlab
+
+setwd('~/Git/CO2Reader/Survey Sandbox') # Specify working path
+dir()
+
+# Define the variable types associated with the survey
 questions=10;
 answerVals=c(1:5);
 respondents=200;
-
-
 
 #generate answers to each question for each respondent
 surveyResults=matrix(sample.int(max(answerVals), size = questions*respondents, replace = TRUE), nrow = questions, ncol = respondents)
