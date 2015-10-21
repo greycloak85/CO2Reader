@@ -31,8 +31,13 @@ surveyResults = matrix(sample.int(maxVal, size = numQuestions*numRespondents, re
 # reasonable.
 
 
-#*******What is the maximal group of questions such the N consistent responses are produced?**********
-# order questions by variability
+# Q: What is the maximal group of questions such the N consistent responses are produced?
+# Unsure
+
+# Sort questions by variability
+variance <- apply(surveyResults, 2, sd) # Calculate SD for each column
+order(variance)
+
 
 #simpler!
 #make a temporary matrix matTemp
