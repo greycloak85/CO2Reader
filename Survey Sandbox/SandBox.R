@@ -11,19 +11,24 @@ setwd('~/Git/CO2Reader/Survey Sandbox') # Specify working path
 dir()
 
 # Define the variable types associated with the survey
-questions=10;
-answerVals=c(1:5);
-respondents=200;
 
-#generate answers to each question for each respondent
-surveyResults=matrix(sample.int(max(answerVals), size = questions*respondents, replace = TRUE), nrow = questions, ncol = respondents)
+maxVal = 5 # Largest value for Likert scale question
+numQuestions=10 # Columns
+numRespondents=100 # Rows
+
+# Generate random answers to each question for each respondent
+surveyResults = matrix(sample.int(maxVal, size = numQuestions*numRespondents, replace = TRUE), 
+                       nrow = numRespondents, ncol = numQuestions)
 
 
 #####################Below are questions to answer###################################
 
 
-#*******Are the responses random?  (i.e. not spoofed, honestly generated, is there structure)*********
-
+# Q: Are the responses random?  (i.e. not spoofed, honestly generated, is there structure)
+# I think it would be best to assume that the dataset is genuine and any problematic
+# participants have been excluded in preprocessing steps. If we want, down the road
+# we could implement a few  basic checks to ensure that data at least appears to be 
+# reasonable.
 
 
 #*******What is the maximal group of questions such the N consistent responses are produced?**********
