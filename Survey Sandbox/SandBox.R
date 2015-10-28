@@ -39,10 +39,24 @@ sex <- sample(c('M','F'), numResp, replace=T)
 df <- cbind(id, age, sex, df)
 head(df)
 
+# Convert to a local data frame for prettier printing. Just experimenting with this.
+df <- tbl_df(df) 
+
 # Calculate variability of each question
-variance <- apply(data, 2, sd) # Calculate SD for each column
+variance <- apply(df, 2, sd) # Calculate SD for each column
 order(variance)
 # Sort columns by variance in increasing order (Left=low variance, Right=high variance)
+
+
+# Filter by 
+filter[df, age=63]
+
+
+# For each row in a data frame
+
+# Extract all rows that match 
+
+
 
 
 
