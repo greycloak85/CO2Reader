@@ -23,8 +23,8 @@ dir() # List contents to make sure you are in the righe directory
 
 # Define the variable types associated with the survey
 maxVal = 5 # Largest value for Likert scale question
-numQuest = 20 # A column for each question
-numResp = 2000 # A row for each respondent
+numQuest = 15 # A column for each question
+numResp = 500 # A row for each respondent
 
 # Generate random answers to each question for each respondent
 set.seed(18)
@@ -40,21 +40,43 @@ df <- cbind(id, age, sex, df)
 head(df)
 
 # Convert to a local data frame for prettier printing. Just experimenting with this.
-df <- tbl_df(df) 
+# df <- tbl_df(df) 
 
 # Calculate variability of each question
-variance <- apply(df, 2, sd) # Calculate SD for each column
-order(variance)
+# variance <- apply(df, 2, sd) # Calculate SD for each column
+# order(variance)
 # Sort columns by variance in increasing order (Left=low variance, Right=high variance)
-
-
-# Filter by 
-filter[df, age=63]
-
-
 # For each row in a data frame
-
 # Extract all rows that match 
+
+
+# Unsupervised Clustering techniques
+
+# Hierarchical Clustering: hclust()
+# hclust uses distance measure
+require(cluster)
+
+seg.dist <- daisy(df)
+seg.hc <- hclust(seg.dist, method='complete')
+plot(seg.hc)
+# Zoom in
+plot(cut(as.dendrogram(seg.hc), h=0.6)$lower[[1]])
+
+
+# Mean-based Clustering: kmeans()
+# kmeans uses numeric data
+
+
+# Model-based Clustering: MClust()
+# MClust uses numeric data
+
+
+# Comparing Models with Bayesian information criterion: BIC()
+
+
+# Latent class analysis: poLCA()
+# poLCA uses only categorical variables
+
 
 
 
