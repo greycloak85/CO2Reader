@@ -1,7 +1,10 @@
 # The intent of this script is to serve as a sandbox for approaches we might take 
-# in the analysis of survey data to identify groups of individuals which share many 
-# common features. 
-#
+# in the analysis of survey data to identify groups of people that differ in 
+# important ways associated with products, preferences, and behaviors. By 
+# understanding the differences among groups we can make better strategic choices
+# about opportunities, product definition, and positioning, and can engage in 
+# more effective promotion. 
+
 # Last Updated on October 28, 2015
 
 rm(list = ls(all = TRUE))  # Equivalent to "Clear All" in Matlab
@@ -60,7 +63,7 @@ seg.dist <- daisy(df)
 seg.hc <- hclust(seg.dist, method='complete')
 plot(seg.hc)
 # Zoom in
-plot(cut(as.dendrogram(seg.hc), h=0.6)$lower[[1]])
+plot(cut(as.dendrogram(seg.hc), h=0.35)$lower[[1]])
 
 
 # Mean-based Clustering: kmeans()
