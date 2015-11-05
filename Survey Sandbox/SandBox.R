@@ -69,3 +69,35 @@ order(variance)
 
 
 #What are the M groups of questions such that sum(N_i, 1, M)>=N consistent responses are produced?
+
+
+
+
+Answers <- surveyResults
+rownames(Answers) <- paste("Resp_",1:numRespondents,sep="")
+colnames(Answers) <- paste("Q_",1:numQuestions,sep="") 
+
+#############################################################
+### Simultaneous hclust on both respondents and questions ###
+#############################################################
+library(gplots)
+heatmap.2(Answers)
+
+###############################################
+###       Clustering respondents            ###
+### Use t(Answers) to cluster on questions. ###
+### Pick distance metric, agglomeration     ###
+### method, and index (measure of fit).     ###
+###############################################
+library(NbClust) #basically every clustering method that exists is in this package
+# euclidean (L_2) distance
+results.1 <- NbClust(Answers, distance = "euclidean", min.nc = 2, max.nc = 15, method = "ward.D2", index = "alllong" )
+
+# manhattan (L_1) distance
+results.2 <- NbClust(Answers, distance = "manhattan", min.nc = 2, max.nc = 15, method = "ward.D2", index = "alllong" )
+
+# canberra distance
+results.3 <- NbClust(Answers, distance = "canberra", min.nc = 2, max.nc = 15, method = "ward.D2", index = "alllong" )
+
+# Maximum (Chebyshev, L_inf) distance
+results.4 <- NbClust(Answers, distance = "maximum", min.nc = 2, max.nc = 15, method = "ward.D2", index = "alllong" )
