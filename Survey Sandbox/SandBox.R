@@ -69,11 +69,11 @@ as.matrix(seg.dist)[1:7,1:7]
 seg.hc <- hclust(seg.dist, method='complete') 
 plot(seg.hc)
 # Zoom in
-plot(cut(as.dendrogram(seg.hc), h=9)$lower[[1]])
+plot(cut(as.dendrogram(seg.hc), h=.5)$lower[[1]])
 
 # Check the similarity of a few pairs
 df[c(45, 77), ] # similar
-df[c(1, 31), ] # similar
+df[c( 1, 31), ] # similar
 df[c(45, 31), ] # dissimilar
 
 # Check goodness-of-fit with the Cophenetic correlation coefficient (CPCC)
@@ -95,7 +95,6 @@ table(seg.hc.segment) # Table with size of segments
 
 
 
-
 # Mean-based Clustering: kmeans()
 # kmeans uses numeric data
 dfNums=df[4:ncol(df)]
@@ -104,6 +103,8 @@ daisyDFNums=daisy(dfNums)
 sil   <- silhouette(dfNumKmeans$cl, daisyDFNums^2)
 plot(sil)
 plotcluster(dfNums,dfNumKmeans$cl)
+
+
 
 
 # Model-based Clustering: MClust()
@@ -115,11 +116,6 @@ plotcluster(dfNums,dfNumKmeans$cl)
 
 # Latent class analysis: poLCA()
 # poLCA uses only categorical variables
-
-
-
-
-
 
 
 
