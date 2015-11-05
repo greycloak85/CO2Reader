@@ -17,12 +17,12 @@ syntactic.device <- Sys.info()["nodename"]
 if(syntactic.device == 'Richs-MacBook-Air.local'){
   setwd('/Users/Rich_Yaxley/Dropbox (Personal)/Work/Git/CO2Reader/Survey Sandbox')
 } else if (syntactic.device == 'JIMS_MACHINE'){
-  setwd('C:\Users\Jim and Kristy\Dropbox\???')
-} else if (syntactic.device == 'BILLS_MACHINE'){
-  setwd('C:\Users\Greycloak')
+  setwd('C:/Users/Jim and Kristy/Dropbox/???')
+} else if (syntactic.device == 'WILLIAM-PC'){
+  setwd('C:/Users/William/Dropbox (Personal)/CO2Reader/Survey Sandbox')
 }
 
-dir() # List contents to make sure you are in the righe directory
+dir() # List contents to make sure you are in the right directory
 
 # Define the variable types associated with the survey
 maxVal = 5 # Largest value for Likert scale question
