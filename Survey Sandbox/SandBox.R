@@ -103,7 +103,7 @@ dfNumKmeans=kmeans(dfNums,4)
 daisyDFNums=daisy(dfNums)
 sil   <- silhouette(dfNumKmeans$cl, daisyDFNums^2)
 plot(sil)
-plotcluster(dfNums,dfNumKmeans$cl)
+#plotcluster(dfNums,dfNumKmeans$cl)
 
 
 # Model-based Clustering: MClust()
@@ -165,6 +165,16 @@ plotcluster(dfNums,dfNumKmeans$cl)
 
 #What are the M groups of questions such that sum(N_i, 1, M)>=N consistent responses are produced?
 
+
+#define the characteristices associated with the survey
+numQuestions=10;
+answerVals=c(1:5);
+numRespondents=200;
+
+
+
+#generate answers to each question for each respondent
+surveyResults=matrix(sample.int(max(answerVals), size = numQuestions*numRespondents, replace = TRUE), nrow = numQuestions, ncol = numRespondents)
 
 
 
