@@ -1,28 +1,127 @@
 # The intent of this script is to serve as a sandbox for approaches we might take 
-# in the analysis of survey data to identify groups of individuals which share many 
-# common features. 
-#
-# Last Updated on October 21, 2015
+# in the analysis of survey data to identify groups of people that differ in 
+# important ways associated with products, preferences, and behaviors. By 
+# understanding the differences among groups we can make better strategic choices
+# about opportunities, product definition, and positioning, and can engage in 
+# more effective promotion. 
 
+# Last Updated on November 4, 2015
 
 rm(list = ls(all = TRUE))  # Equivalent to "Clear All" in Matlab
 
-setwd('~/Git/CO2Reader/Survey Sandbox') # Specify working path
-dir()
+# Load packages
+require(dplyr)
+
+# Set working path based on machine
+syntactic.device <- Sys.info()["nodename"]
+if(syntactic.device == 'Richs-MacBook-Air.local'){
+  setwd('/Users/Rich_Yaxley/Dropbox (Personal)/Work/Git/CO2Reader/Survey Sandbox')
+} else if (syntactic.device == 'JIMS_MACHINE'){
+  setwd('C:/Users/Jim and Kristy/Dropbox/???')
+} else if (syntactic.device == 'WILLIAM-PC'){
+  setwd('C:/Users/William/Dropbox (Personal)/CO2Reader/Survey Sandbox')
+}
+
+dir() # List contents to make sure you are in the right directory
 
 # Define the variable types associated with the survey
-
 maxVal = 5 # Largest value for Likert scale question
-numQuestions=10 # Columns
-numRespondents=100 # Rows
+numQuest = 15 # A column for each question
+numResp = 100 # A row for each respondent
 
 # Generate random answers to each question for each respondent
-surveyResults = matrix(sample.int(maxVal, size = numQuestions*numRespondents, replace = TRUE), 
-                       nrow = numRespondents, ncol = numQuestions)
+set.seed(18)
+m <- matrix(rbinom(numQuest*numResp, maxVal, .5), ncol=numQuest)
+df <- as.data.frame(m)
+
+id <- sample(c('0':'9999999'), numResp, replace=F)
+age <- sample(18:65, numResp, replace=TRUE)
+sex <- sample(c('M','F'), numResp, replace=T)
+
+# LOAD DATA
+# open survey data from Habitat for Humanity study
+# clean data 
+# 
+
+# Combine columns, and question matrix
+df <- cbind(id, age, sex, df)
+head(df)
+
+# Convert to a local data frame for prettier printing. Just experimenting with this.
+# df <- tbl_df(df) 
+
+# Calculate variability of each question
+# variance <- apply(df, 2, sd) # Calculate SD for each column
+# order(variance)
+# Sort columns by variance in increasing order (Left=low variance, Right=high variance)
+# For each row in a data frame
+# Extract all rows that match 
 
 
-#####################Below are questions to answer###################################
+# Unsupervised Clustering techniques
 
+# Hierarchical Clustering: hclust()
+# hclust uses distance measure
+require(cluster)
+
+seg.dist <- daisy(df) # distance function
+as.matrix(seg.dist)[1:7,1:7]
+seg.hc <- hclust(seg.dist, method='complete') 
+plot(seg.hc)
+# Zoom in
+plot(cut(as.dendrogram(seg.hc), h=9)$lower[[1]])
+
+# Check the similarity of a few pairs
+df[c(45, 77), ] # similar
+df[c(1, 31), ] # similar
+df[c(45, 31), ] # dissimilar
+
+# Check goodness-of-fit with the Cophenetic correlation coefficient (CPCC)
+cophenetic(seg.hc)
+cor(cophenetic(seg.hc), seg.dist)
+
+# Determine how many groups we want for the segmentation
+plot(seg.hc)
+# Cut at 4 groups
+rect.hclust(seg.hc, k=4, border='red')
+seg.hc.segment <- cutree(seg.hc, k=4) # Vector with group membership labels
+table(seg.hc.segment) # Table with size of segments
+
+# plot(jitter(as.numeric(df$V1)) ~ 
+#      jitter(as.numeric(df$V2)),
+#      col=seg.hc.segment, yaxt='n', xact='n', ylab='', xlab='')
+
+
+
+
+
+
+# Mean-based Clustering: kmeans()
+# kmeans uses numeric data
+
+
+# Model-based Clustering: MClust()
+# MClust uses numeric data
+
+
+# Comparing Models with Bayesian information criterion: BIC()
+
+
+# Latent class analysis: poLCA()
+# poLCA uses only categorical variables
+
+
+
+
+
+
+
+
+
+
+#---------------------------------------------------------------------------#
+# Open Questions
+#---------------------------------------------------------------------------#
 
 # Q: Are the responses random?  (i.e. not spoofed, honestly generated, is there structure)
 # I think it would be best to assume that the dataset is genuine and any problematic
@@ -33,11 +132,6 @@ surveyResults = matrix(sample.int(maxVal, size = numQuestions*numRespondents, re
 
 # Q: What is the maximal group of questions such the N consistent responses are produced?
 # Unsure
-
-# Sort questions by variability
-variance <- apply(surveyResults, 2, sd) # Calculate SD for each column
-order(variance)
-
 
 #simpler!
 #make a temporary matrix matTemp
@@ -56,11 +150,6 @@ order(variance)
   #check if any val in commonAns>N (desired threshold)
   #if so, break
 #end
-
-
-
-
-
 
 
 
