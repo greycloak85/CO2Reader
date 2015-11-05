@@ -68,6 +68,12 @@ plot(cut(as.dendrogram(seg.hc), h=0.35)$lower[[1]])
 
 # Mean-based Clustering: kmeans()
 # kmeans uses numeric data
+dfNums=df[4:ncol(df)]
+dfNumKmeans=kmeans(dfNums,4)
+daisyDFNums=daisy(dfNums)
+sil   <- silhouette(dfNumKmeans$cl, daisyDFNums^2)
+plot(sil)
+plotcluster(dfNums,dfNumKmeans$cl)
 
 
 # Model-based Clustering: MClust()
