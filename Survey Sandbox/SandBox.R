@@ -17,9 +17,9 @@ syntactic.device <- Sys.info()["nodename"]
 if(syntactic.device == 'Richs-MacBook-Air.local'){
   setwd('/Users/Rich_Yaxley/Dropbox (Personal)/Work/Git/CO2Reader/Survey Sandbox')
 } else if (syntactic.device == 'JIMS_MACHINE'){
-  setwd('C:/JIMPATH')
-} else if (syntactic.device == 'BILLS_MACHINE'){
-  setwd('C:/BILLPATH')
+  setwd('C:/Users/Jim and Kristy/Dropbox/???')
+} else if (syntactic.device == 'WILLIAM-PC'){
+  setwd('C:/Users/William/Dropbox (Personal)/CO2Reader/Survey Sandbox')
 }
 
 dir() # List contents to make sure you are in the right directory
@@ -90,6 +90,9 @@ table(seg.hc.segment) # Table with size of segments
 # plot(jitter(as.numeric(df$V1)) ~ 
 #      jitter(as.numeric(df$V2)),
 #      col=seg.hc.segment, yaxt='n', xact='n', ylab='', xlab='')
+
+
+
 
 
 
