@@ -170,7 +170,7 @@ numRespondents=200;
 
 
 #generate answers to each question for each respondent
-surveyResults=matrix(sample.int(max(answerVals), size = numQuestions*numRespondents, replace = TRUE), nrow = numQuestions, ncol = numRespondents)
+surveyResults=matrix(sample.int(max(answerVals), size = numQuestions*numRespondents, replace = TRUE), nrow = numRespondents, ncol = numQuestions)
 
 
 
