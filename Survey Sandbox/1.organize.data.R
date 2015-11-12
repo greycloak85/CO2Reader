@@ -1,6 +1,3 @@
-require(reshape2)
-require(ggplot2)
-
 # Data and analysis directory
 setwd('/Users/Rich_Yaxley/Dropbox (Personal)/Work/Meemir/Lottery')
 
@@ -36,21 +33,7 @@ head(df)
 write.csv(df, file='survey.data.clean.csv', row.names=F)
 
 
-
 #---------------------------------------------------------------------------# 
-# keeps <- c('ID', 'Q7', 'Q35_1', 'Q35_2', 'Q35_3', 'Q35_4', 'Q35_5', 'Q35_6', 'Q35_7', 'Q35_8', 'Q35_9',
-#            'Q35_10', 'Q35_11', 'Q35_12', 'Q35_13', 'Q35_14', 'Q35_15', 'Q35_16', 'Q35_17', 'Q35_18', 'Q35_19',
-#            'Q35_20', 'Q35_21', 'Q35_22', 'Q35_23', 'Q35_24', 'Q35_25', 'Q35_26', 'Q35_27', 'Q35_28')
-# df <- df[ , (names(df) %in% keeps)]
-
-
-
-
-# Melt data into long format
-# df <- melt(df, id.vars=c('ID','Q7'), variable.name = 'Perceptions', value.name= 'Rating')
-
-
-
 
 # # General Attitudes questions from Q7.2_1--Q7.4_12
 # keeps <- c( 'Q7.2_1', 'Q7.2_2', 'Q7.2_3', 'Q7.2_4', 'Q7.2_5', 'Q7.2_6', 'Q7.2_7', 'Q7.2_8', 'Q7.2_9', 'Q7.2_10', 'Q7.2_11', 'Q7.2_12', 'Q7.2_13', 'Q7.2_14', 'Q7.3_1', 'Q7.3_2', 'Q7.3_3',
